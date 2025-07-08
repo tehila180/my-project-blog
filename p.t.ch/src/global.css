@@ -1,0 +1,24 @@
+/* global.css */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  direction: rtl;
+  background-image: url('/images/c0d12100-88c3-4d39-af44-86878ad42f61.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* אפשר להוסיף צבע רקע חצי שקוף אם רוצים */
+  background-attachment: fixed;
+}
+
+.overlay-global {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(3px);
+  z-index: -1; /* מתחת לכל התוכן */
+}

@@ -1,0 +1,155 @@
+/* עיצוב כללי לעמוד הפוסט */
+.post-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  direction: rtl;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* עיצוב תגובה אחת */
+.comment-box {
+  background-color: rgba(255, 255, 255, 0.536); /* לבן חצי שקוף */
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+     font-size: 13px;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #004080;
+  margin-bottom: 5px;
+   font-size: 12px;
+ 
+}
+
+.comment-content {
+  color: rgba(0, 0, 0, 0.929);
+  font-size: 16px;
+  line-height: 1.4;
+  direction: auto;
+}
+
+/* עיצוב כותרת אזור תגובות */
+.comments-section h4 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #004080;
+}
+
+/* טופס תגובה */
+.add-comment-form textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+  resize: none;
+  margin-bottom: 8px;
+}
+
+.add-comment-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-comment-form button:hover {
+  background-color: #0056b3;
+}
+
+/* הודעת שגיאה */
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+/* התאמה לניידים */
+@media (max-width: 600px) {
+  .post-container {
+    padding: 15px;
+  }
+
+  .comment-content {
+    font-size: 13px;
+  }
+
+  .add-comment-form textarea {
+    font-size: 13px;
+  }
+
+  .add-comment-form button {
+    font-size: 14px;
+  }
+}
+.add-comment-form {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  direction: rtl;
+}
+
+.add-comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: none;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.add-comment-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.add-comment-form button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin: 5px 0 10px 0;
+  font-size: 14px;
+}
+.post-image-wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  border-radius: 12px;
+ 
+  text-align: right; /* הצמדה לימין */
+}
+
+.post-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: inline-block; /* כדי שהטקסט-align ישפיע */
+}
+
+
+
