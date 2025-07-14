@@ -5,13 +5,18 @@ const User = require('../models/User');
 
 const router = express.Router();
 
+// --- הרשמה ---
 router.post('/register', async (req, res) => {
   const { username, password } = req.body;
   try {
-    if (!username || !password) return res.status(400).json({ message: 'אנא מלא את כל השדות' });
+    if (!username || !password) {
+      return res.status(400).json({ message: 'אנא מלא את כל השדות' });
+    }
 
     const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ message: 'שם משתמש קיים' });
+    if (existingUser) {
+      return res.status(400).json({ message: 'שם המשתמש כבר קיים במערכת' });
+    }
 
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
@@ -21,24 +26,38 @@ router.post('/register', async (req, res) => {
 
     res.status(201).json({ message: 'נרשמת בהצלחה' });
   } catch (err) {
+    // טיפול ספציפי בשם משתמש כפול
+    if (err.code === 11000) {
+      return res.status(400).json({ message: 'שם המשתמש כבר קיים במערכת' });
+    }
+
+    console.error('שגיאה בשרת בהרשמה:', err);
     res.status(500).json({ message: 'שגיאה בשרת' });
   }
 });
 
+// --- התחברות ---
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   try {
-    if (!username || !password) return res.status(400).json({ message: 'אנא מלא את כל השדות' });
+    if (!username || !password) {
+      return res.status(400).json({ message: 'אנא מלא את כל השדות' });
+    }
 
     const user = await User.findOne({ username });
-    if (!user) return res.status(400).json({ message: 'שם משתמש או סיסמה לא נכונים' });
+    if (!user) {
+      return res.status(400).json({ message: 'שם משתמש או סיסמה לא נכונים' });
+    }
 
     const isMatch = await bcrypt.compare(password, user.passwordHash);
-    if (!isMatch) return res.status(400).json({ message: 'שם משתמש או סיסמה לא נכונים' });
+    if (!isMatch) {
+      return res.status(400).json({ message: 'שם משתמש או סיסמה לא נכונים' });
+    }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
     res.json({ token, user: { _id: user._id, username: user.username } });
   } catch (err) {
+    console.error('שגיאה בשרת בהתחברות:', err);
     res.status(500).json({ message: 'שגיאה בשרת' });
   }
 });
